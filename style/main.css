@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+:root {
+    --dark-grey: #243548;
+    --light-grey: #d1d1d1;
+    --orange: #e3953a
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    background-color: var(--dark-grey);
+    color: var(--orange);
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: none;
+}
+
+footer p {
+    margin-bottom: 0
+}
+
+.logo {
+    width: 5vw;
+}
+
+.navbar {
+    background-color: var(--dark-grey);
+}
+
+.navbar a {
+    color: var(--orange);
+}
+
+.dropdown-menu {
+    background-color: var(--dark-grey);
+}
+
+.custom-toggler .navbar-toggler-icon {
+    background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(227, 149, 58)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
+
+.custom-toggler.navbar-toggler {
+    border-color: var(--orange);
+}
+
+header p {
+    font-size: 2rem;
+}
+
+header, header a {
+    background-color: var(--dark-grey);
+    color: var(--orange);
+}
+
+thead {
+    background-color: var(--light-grey);
+    color: var(--dark-grey);
+}
+
+h2 {
+    font-size: 2rem;
+    margin-left: 20vw;
+    margin-top: 20px
+}
+
+P {
+    text-indent: 2em
+}
+
+#less{
+    display : none;
+}
