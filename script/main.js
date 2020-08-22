@@ -25,28 +25,35 @@ if (document.getElementById("senate-data")) {
 
 
 function repeat(members) {
-  for (let i = 0; i < members.length; i++) {
-    console.log(members[i].state);
-    let stateArray = [];
-    stateArray.push(stateArray[i]);
 
-
-   
-    let repetedState = [];
-    for (let i = 0; i < members.length; i++) {
-      if (!stateArray.includes(members[i])) {
-        stateArray.push(members[i])
-      } else if (stateArray.includes(members[i]) && !repetedState.includes(members[i])) {
-        repetedState.push(members[i])
-      }
-      
-    } console.log(repetedState)
+  let states = [];
+  for( i=0 ; i<members.length; i++ ){
+    if(!states.includes(members[i].state)){
+      states.push(members[i].state)
+    }
   }
- 
-}
+  states.sort();
+  console.log(states);
 
+  for (let j = 0; j < states.length; j++) {
+  let select = document.getElementById("state-select")
+
+  let option = document.createElement("option");
+  option.setAttribute("value",`${states[j]}`);
+  option.innerText = `${states[j]}`;
+
+  select.appendChild(option)
+  
+}
+}
+ 
 repeat(houseMembers)
 
+
+
+
+
+//---------------FUNCION TABLA--------------------
 function addTableData(table, members) {
 
   table.innerHTML = '';
@@ -83,7 +90,7 @@ function addTableData(table, members) {
 
 
 
-    if (checkedParties.includes(members[i].party)) {
+    if (checkedParties.includes(members[i].party) ) {
 
       let url = `${members[i].url}`;
       let a = document.createElement("a");

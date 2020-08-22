@@ -12,10 +12,9 @@ body {
 footer {
     background-color: var(--dark-grey);
     color: var(--orange);
-    position: absolute;
-    width: 100%;
+   width: 100%;
     bottom: 0;
-    display: none;
+    
 }
 
 footer p {
