@@ -19,6 +19,10 @@ if (document.getElementById("senate-data")) {
     addTableData(document.getElementById("house-data"), houseMembers);
   }));
 
+  document.querySelector("#state-select").addEventListener("change", function() {
+    addTableData(document.getElementById("house-data"), houseMembers);
+  })
+
   addTableData(document.getElementById("house-data"), houseMembers);
 
 }
@@ -83,48 +87,51 @@ function addTableData(table, members) {
   table.appendChild(thead);
 
   let tbody = document.createElement("tbody");
-  let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value)
+  let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value);
+
+  
+  let selectedStates = document.querySelector("#state-select").selectedIndex;
+  let selectedOption = document.getElementsByTagName("option")[selectedStates].value
+    console.log(selectedOption);
 
 
-  for (let i = 0; i < members.length; i++) {
+    for (let i = 0; i < members.length; i++) {
 
-
-
-    if (checkedParties.includes(members[i].party) ) {
-
-      let url = `${members[i].url}`;
-      let a = document.createElement("a");
-
-      a.setAttribute("href", url);
-      a.setAttribute("target", "_blank");
-
-      let name = members[i].first_name + ' ' + (members[i].middle_name || '') + members[i].last_name;
-      a.innerHTML = name;
-
-      let tr = document.createElement("tr");
-
-      let td1 = document.createElement("td");
-      td1.appendChild(a);
-      let td2 = document.createElement("td");
-      td2.innerText = members[i].party;
-      let td3 = document.createElement("td");
-      td3.innerText = members[i].state;
-      let td4 = document.createElement("td");
-      td4.innerText = members[i].seniority;
-      let td5 = document.createElement("td");
-      td5.innerText = members[i].votes_with_party_pct + " %";
-
-      tr.appendChild(td1);
-      tr.appendChild(td2);
-      tr.appendChild(td3);
-      tr.appendChild(td4);
-      tr.appendChild(td5);
-
-      tbody.appendChild(tr);
-
-
+      if (checkedParties.includes(members[i].party) && (members[i].state == selectedOption || selectedOption == 'All')) {
+        
+        let url = `${members[i].url}`;
+        let a = document.createElement("a");
+  
+        a.setAttribute("href", url);
+        a.setAttribute("target", "_blank");
+  
+        let name = members[i].first_name + ' ' + (members[i].middle_name || '') + members[i].last_name;
+        a.innerHTML = name;
+  
+        let tr = document.createElement("tr");
+  
+        let td1 = document.createElement("td");
+        td1.appendChild(a);
+        let td2 = document.createElement("td");
+        td2.innerText = members[i].party;
+        let td3 = document.createElement("td");
+        td3.innerText = members[i].state;
+        let td4 = document.createElement("td");
+        td4.innerText = members[i].seniority;
+        let td5 = document.createElement("td");
+        td5.innerText = members[i].votes_with_party_pct + " %";
+  
+        tr.appendChild(td1);
+        tr.appendChild(td2);
+        tr.appendChild(td3);
+        tr.appendChild(td4);
+        tr.appendChild(td5);
+        
+        tbody.appendChild(tr);
+  
+      }
     }
-  }
+
   table.appendChild(tbody);
 } //fin de funcion
 
