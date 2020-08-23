@@ -13,12 +13,19 @@ footer {
     background-color: var(--dark-grey);
     color: var(--orange);
    width: 100%;
-    bottom: 0;
+    margin-top: 50px;
     
+}
+#senate-footer{
+    margin-top: 80px
 }
 
 footer p {
     margin-bottom: 0
+}
+
+.container {
+    min-height: 56vh;
 }
 
 .logo {
