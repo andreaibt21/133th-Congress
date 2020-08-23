@@ -4,9 +4,6 @@
 let senateMembers = senateData.results[0].members;
 let houseMembers = houseData.results[0].members;
 
-let selectedStates;
-let selectedOption;
-
 if (document.getElementById("senate-data")) {
 
   document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
@@ -93,8 +90,8 @@ function addTableData(table, members) {
   let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value);
 
   
-    selectedStates = document.querySelector("#state-select").selectedIndex;
-    selectedOption = document.getElementsByTagName("option")[selectedStates].value
+  let selectedStates = document.querySelector("#state-select").selectedIndex;
+  let selectedOption = document.getElementsByTagName("option")[selectedStates].value
     console.log(selectedOption);
 
 
