@@ -1,37 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
 :root {
     --dark-grey: #243548;
     --light-grey: #d1d1d1;
     --orange: #e3953a
 }
-
-body {
-    font-family: 'Montserrat', sans-serif;
-}
-
-footer {
-    background-color: var(--dark-grey);
-    color: var(--orange);
-   width: 100%;
-    margin-top: 50px;
-    
-}
-#senate-footer{
-    margin-top: 80px
-}
-
-footer p {
-    margin-bottom: 0
-}
-
-.container {
-    min-height: 56vh;
-}
-
 .logo {
     width: 5vw;
 }
-
+.logo-text{
+    width: 20vw;
+}
 .navbar {
     background-color: var(--dark-grey);
 }
@@ -59,9 +38,35 @@ header p {
 header, header a {
     background-color: var(--dark-grey);
     color: var(--orange);
+    padding-right: 2rem;
+}
+header a:hover{
+    color: white;
+    text-decoration: none;
 }
 
-thead {
+body {
+    font-family: 'Montserrat', sans-serif;
+}
+
+footer {
+    background-color: var(--dark-grey);
+    color: var(--orange);
+   width: 100%;
+    margin-top: 50px;
+    
+}
+#senate-footer{
+    margin-top: 80px
+}
+
+footer p {
+    margin-bottom: 0
+}
+
+
+
+thead, .card-header {
     background-color: var(--light-grey);
     color: var(--dark-grey);
 }
@@ -79,3 +84,33 @@ P {
 #less{
     display : none;
 }
+
+.card-header button {
+    color: var(--dark-grey);
+    font-weight: 600;
+}
+.card-header button:hover {
+    color: var(--orange);
+}
+#h3-readmore{
+  
+    text-align: center;
+    margin-top: 2rem;
+}
+
+#about{
+    width: 70vw;
+}
+#about h3{
+    border-bottom: #243548 1px solid;
+    padding-left: 6rem; 
+    margin-bottom: 30px;
+}
+#paragraph{
+    width: 85%;
+}
+
+
+
+
+

@@ -60,15 +60,28 @@
         </p>
 
         
-        <form action="" onsubmit="return false">
+        <form action="" onsubmit="return false" class="w-75 mx-auto d-flex align-items-end mb-4 justify-content-around">
+            <div>
+                
             <legend>Filter by party</legend>
 
-            <label for="R">Republican</label>
-            <input type="checkbox" name="party" value="R" id="R" checked>
-            <label for="D">Democrat</label>
-            <input type="checkbox" name="party" value="D" id="D" checked>
-            <label for="ID">Independent</label>
-            <input type="checkbox" name="party" value="ID"id="ID" checked>
+            <label for="R" class="mr-1">Republican</label>
+            <input type="checkbox" name="party"  value="R" id="R" checked>
+            <label for="D" class="mr-1 ml-2">Democrat</label>
+            <input type="checkbox" name="party"  value="D" id="D" checked>
+            <label for="ID" class="mr-1 ml-2">Independent</label>
+            <input type="checkbox" name="party"  value="ID"id="ID" checked>
+           </div>
+            
+            <fieldset>
+                <label for="state">State
+                    <select name="state" id="senate-select">
+                     <option value="All">All</option>
+                       
+                    </select>
+                </label>
+            </fieldset>
+
         </form>
 
         <table class="table w-75 mx-auto text-center" id="senate-data"></table>

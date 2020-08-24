@@ -10,6 +10,10 @@ if (document.getElementById("senate-data")) {
     addTableData(document.getElementById("senate-data"), senateMembers);
   }));
 
+  document.querySelector("#senate-select").addEventListener("change", function (){
+    addTableData(document.getElementById("senate-data"), senateMembers)
+  })
+
   addTableData(document.getElementById("senate-data"), senateMembers);
 
 
@@ -28,7 +32,7 @@ if (document.getElementById("senate-data")) {
 }
 
 
-function repeat(members) {
+function addStateToList(members) {
 
   let states = [];
   for( i=0 ; i<members.length; i++ ){
@@ -37,10 +41,11 @@ function repeat(members) {
     }
   }
   states.sort();
-  console.log(states);
+  //console.log(states);
 
   for (let j = 0; j < states.length; j++) {
-  let select = document.getElementById("state-select")
+  let select = document.getElementById("state-select") || 
+               document.getElementById("senate-select");
 
   let option = document.createElement("option");
   option.setAttribute("value",`${states[j]}`);
@@ -51,8 +56,8 @@ function repeat(members) {
 }
 }
  
-repeat(houseMembers)
-
+addStateToList(houseMembers)
+addStateToList(senateMembers)
 
 
 
@@ -90,14 +95,17 @@ function addTableData(table, members) {
   let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value);
 
   
-  let selectedStates = document.querySelector("#state-select").selectedIndex;
-  let selectedOption = document.getElementsByTagName("option")[selectedStates].value
-    console.log(selectedOption);
+  let stateIndex = document.querySelector("#state-select") ? 
+                       document.querySelector("#state-select").selectedIndex : 
+                       document.querySelector("#senate-select").selectedIndex;
+
+  let selectedOption = document.getElementsByTagName("option")[stateIndex].value
+    //console.log(selectedOption);
 
 
     for (let i = 0; i < members.length; i++) {
 
-      if (checkedParties.includes(members[i].party) && (members[i].state == selectedOption || selectedOption == 'All')) {
+      if (checkedParties.includes(members[i].party) && (selectedOption == 'All' || members[i].state == selectedOption)) {
         
         let url = `${members[i].url}`;
         let a = document.createElement("a");
