@@ -81,9 +81,9 @@ P {
     text-indent: 2em
 }
 
-#less{
+/* #less{
     display : none;
-}
+} */
 
 .card-header button {
     color: var(--dark-grey);

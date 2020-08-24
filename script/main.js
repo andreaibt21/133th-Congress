@@ -4,63 +4,60 @@
 let senateMembers = senateData.results[0].members;
 let houseMembers = houseData.results[0].members;
 
+//Decide ejecutar los datos del senado o del house, depende del caso
+
 if (document.getElementById("senate-data")) {
 
   document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
     addTableData(document.getElementById("senate-data"), senateMembers);
   }));
 
-  document.querySelector("#senate-select").addEventListener("change", function (){
+  document.querySelector("#senate-select").addEventListener("change", function () {
     addTableData(document.getElementById("senate-data"), senateMembers)
   })
 
+  addStateToList(senateMembers)
   addTableData(document.getElementById("senate-data"), senateMembers);
 
 
-} else {
+} else if (document.getElementById("house-data")) {
 
   document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
     addTableData(document.getElementById("house-data"), houseMembers);
   }));
 
-  document.querySelector("#state-select").addEventListener("change", function() {
+  document.querySelector("#state-select").addEventListener("change", function () {
     addTableData(document.getElementById("house-data"), houseMembers);
   })
 
+  addStateToList(houseMembers)
   addTableData(document.getElementById("house-data"), houseMembers);
 
 }
 
-
+//----------------FUNCION ESTADOS-----------------
 function addStateToList(members) {
 
   let states = [];
-  for( i=0 ; i<members.length; i++ ){
-    if(!states.includes(members[i].state)){
+  for (i = 0; i < members.length; i++) {
+    if (!states.includes(members[i].state)) {
       states.push(members[i].state)
     }
   }
   states.sort();
-  //console.log(states);
 
   for (let j = 0; j < states.length; j++) {
-  let select = document.getElementById("state-select") || 
-               document.getElementById("senate-select");
+    let select = document.getElementById("state-select") ||
+      document.getElementById("senate-select");
 
-  let option = document.createElement("option");
-  option.setAttribute("value",`${states[j]}`);
-  option.innerText = `${states[j]}`;
+    let option = document.createElement("option");
+    option.setAttribute("value", `${states[j]}`);
+    option.innerText = `${states[j]}`;
 
-  select.appendChild(option)
-  
+    select.appendChild(option)
+
+  }
 }
-}
- 
-addStateToList(houseMembers)
-addStateToList(senateMembers)
-
-
-
 
 //---------------FUNCION TABLA--------------------
 function addTableData(table, members) {
@@ -94,69 +91,72 @@ function addTableData(table, members) {
   let tbody = document.createElement("tbody");
   let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value);
 
-  
-  let stateIndex = document.querySelector("#state-select") ? 
-                       document.querySelector("#state-select").selectedIndex : 
-                       document.querySelector("#senate-select").selectedIndex;
+
+  let stateIndex = document.querySelector("#state-select") ?
+    document.querySelector("#state-select").selectedIndex :
+    document.querySelector("#senate-select").selectedIndex;
 
   let selectedOption = document.getElementsByTagName("option")[stateIndex].value
-    //console.log(selectedOption);
+  //console.log(selectedOption);
 
 
-    for (let i = 0; i < members.length; i++) {
+  for (let i = 0; i < members.length; i++) {
 
-      if (checkedParties.includes(members[i].party) && (selectedOption == 'All' || members[i].state == selectedOption)) {
-        
-        let url = `${members[i].url}`;
-        let a = document.createElement("a");
-  
-        a.setAttribute("href", url);
-        a.setAttribute("target", "_blank");
-  
-        let name = members[i].first_name + ' ' + (members[i].middle_name || '') + members[i].last_name;
-        a.innerHTML = name;
-  
-        let tr = document.createElement("tr");
-  
-        let td1 = document.createElement("td");
-        td1.appendChild(a);
-        let td2 = document.createElement("td");
-        td2.innerText = members[i].party;
-        let td3 = document.createElement("td");
-        td3.innerText = members[i].state;
-        let td4 = document.createElement("td");
-        td4.innerText = members[i].seniority;
-        let td5 = document.createElement("td");
-        td5.innerText = members[i].votes_with_party_pct + " %";
-  
-        tr.appendChild(td1);
-        tr.appendChild(td2);
-        tr.appendChild(td3);
-        tr.appendChild(td4);
-        tr.appendChild(td5);
-        
-        tbody.appendChild(tr);
-  
-      }
+    if (checkedParties.includes(members[i].party) && (selectedOption == 'All' || members[i].state == selectedOption)) {
+
+      let url = `${members[i].url}`;
+      let a = document.createElement("a");
+
+      a.setAttribute("href", url);
+      a.setAttribute("target", "_blank");
+
+      let name = members[i].first_name + ' ' + (members[i].middle_name || '') + members[i].last_name;
+      a.innerHTML = name;
+
+      let tr = document.createElement("tr");
+
+      let td1 = document.createElement("td");
+      td1.appendChild(a);
+      let td2 = document.createElement("td");
+      td2.innerText = members[i].party;
+      let td3 = document.createElement("td");
+      td3.innerText = members[i].state;
+      let td4 = document.createElement("td");
+      td4.innerText = members[i].seniority;
+      let td5 = document.createElement("td");
+      td5.innerText = members[i].votes_with_party_pct + " %";
+
+      tr.appendChild(td1);
+      tr.appendChild(td2);
+      tr.appendChild(td3);
+      tr.appendChild(td4);
+      tr.appendChild(td5);
+
+      tbody.appendChild(tr);
+
     }
+  }
 
   table.appendChild(tbody);
 } //fin de funcion
 
 
 
-// document.querySelectorAll("input[name=party]").forEach(function(e){ 
-//   e.addEventListener("change", addTableData())
-// })
+//-----READ MORE AND READ LESS----------
 
-//-----end-table1----------
+let more = document.getElementById("more");
+let less = document.getElementById("less");
 
-// let readMore = document.getElementById("read-more")
+more.addEventListener("click", function () {
+  more.style.display = "none";
+  less.style.display = "block";
+})
 
-// readMore.addEventListener("click", function(){
-//   if( readMore.innerText= "Read More"){
-//      readMore.innerText= "Read Less"
-//  } else {
-//    readMore.innerText= "Read More"
-// }
-// })
+less.addEventListener("click", function () {
+  less.style.display = "none";
+  more.style.display = "block";
+})
+
+
+
+
