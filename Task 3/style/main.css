@@ -18,7 +18,9 @@
 .navbar a {
     color: var(--orange);
 }
-
+.navbar-collapse{
+    width: 150px!important;
+}
 .dropdown-menu {
     background-color: var(--dark-grey);
 }
@@ -81,9 +83,6 @@ P {
     text-indent: 2em
 }
 
-/* #less{
-    display : none;
-} */
 
 .card-header button {
     color: var(--dark-grey);
