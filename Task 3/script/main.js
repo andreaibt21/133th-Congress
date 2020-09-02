@@ -1,39 +1,51 @@
 //--------table senate------
 
 
-let senateMembers = senateData.results[0].members;
-let houseMembers = houseData.results[0].members;
+let members = data.results[0].members;
+
+document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
+  addTableData(document.getElementById("congress-data"), members);
+}));
+
+document.querySelector("#select").addEventListener("change", function () {
+  addTableData(document.getElementById("congress-data"),members)
+})
+
+addStateToList(members)
+addTableData(document.getElementById("congress-data"), members);
+
+
 
 //Decide ejecutar los datos del senado o del house, depende del caso
 
-if (document.getElementById("senate-data")) {
+// if (document.getElementById("senate-data")) {
 
-  document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
-    addTableData(document.getElementById("senate-data"), senateMembers);
-  }));
+//   document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
+//     addTableData(document.getElementById("senate-data"), senateMembers);
+//   }));
 
-  document.querySelector("#senate-select").addEventListener("change", function () {
-    addTableData(document.getElementById("senate-data"), senateMembers)
-  })
+//   document.querySelector("#senate-select").addEventListener("change", function () {
+//     addTableData(document.getElementById("senate-data"), senateMembers)
+//   })
 
-  addStateToList(senateMembers)
-  addTableData(document.getElementById("senate-data"), senateMembers);
+//   addStateToList(senateMembers)
+//   addTableData(document.getElementById("senate-data"), senateMembers);
 
 
-} else if (document.getElementById("house-data")) {
+// } else if (document.getElementById("house-data")) {
 
-  document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
-    addTableData(document.getElementById("house-data"), houseMembers);
-  }));
+//   document.querySelectorAll("input[name=party]").forEach(e => e.addEventListener("change", function () {
+//     addTableData(document.getElementById("house-data"), houseMembers);
+//   }));
 
-  document.querySelector("#state-select").addEventListener("change", function () {
-    addTableData(document.getElementById("house-data"), houseMembers);
-  })
+//   document.querySelector("#state-select").addEventListener("change", function () {
+//     addTableData(document.getElementById("house-data"), houseMembers);
+//   })
 
-  addStateToList(houseMembers)
-  addTableData(document.getElementById("house-data"), houseMembers);
+//   addStateToList(houseMembers)
+//   addTableData(document.getElementById("house-data"), houseMembers);
 
-}
+// }
 
 //----------------FUNCION ESTADOS-----------------
 function addStateToList(members) {
@@ -47,8 +59,7 @@ function addStateToList(members) {
   states.sort();
 
   for (let j = 0; j < states.length; j++) {
-    let select = document.getElementById("state-select") ||
-      document.getElementById("senate-select");
+    let select = document.getElementById("select")
 
     let option = document.createElement("option");
     option.setAttribute("value", `${states[j]}`);
@@ -92,12 +103,10 @@ function addTableData(table, members) {
   let checkedParties = Array.from(document.querySelectorAll("input[name=party]:checked")).map(e => e.value);
 
 
-  let stateIndex = document.querySelector("#state-select") ?
-    document.querySelector("#state-select").selectedIndex :
-    document.querySelector("#senate-select").selectedIndex;
+  let stateIndex = document.querySelector("#select") 
 
-  let selectedOption = document.getElementsByTagName("option")[stateIndex].value
-  //console.log(selectedOption);
+  let selectedOption = stateIndex.value
+  
 
 
   for (let i = 0; i < members.length; i++) {
@@ -139,23 +148,6 @@ function addTableData(table, members) {
 
   table.appendChild(tbody);
 } //fin de funcion
-
-
-
-//-----READ MORE AND READ LESS----------
-
-let more = document.getElementById("more");
-let less = document.getElementById("less");
-
-more.addEventListener("click", function () {
-  more.style.display = "none";
-  less.style.display = "block";
-})
-
-less.addEventListener("click", function () {
-  less.style.display = "none";
-  more.style.display = "block";
-})
 
 
 
