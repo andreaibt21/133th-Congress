@@ -15,12 +15,12 @@
 </head>
 
 <body>
-
-    <header class="d-flex justify-content-between align-items-center p-2">
-        <a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment"> <img class="logo"
+  
+    <header class="d-flex justify-content-around justify-content-md-between align-items-center p-2">
+        <a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment" class="p-0"> <img class="logo "
                 src="style/tgif.svg" alt="tgif logo"></a>
-        <p>TGIF</p>
-        <a href="mailto:info@tgif.net?subject=info"> <i class="far fa-envelope"></i> info@tgif.net</a>
+        <h1>TGIF</h1>
+        <a href="mailto:info@tgif.net?subject=info" class="p-0"> <i class="far fa-envelope"></i> <span class="d-none d-md-inline pr-md-2">  info@tgif.net</span></a>
     </header>
 
     <nav class="navbar navbar-expand-lg">
@@ -52,7 +52,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Attendance
+                        Attendance
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="attendance-senate.html">Senate</a>
@@ -79,13 +79,14 @@
             </ul>
         </div>
     </nav>
+
     <div id="about" class=" mx-auto mt-4 text-justify">
         <h3>
             About Us
         </h3>
-        <div id="paragraph" class=" mx-auto">
-            <div class="d-flex justify-content-between ">
-                <div class="w-75 mr-5">
+        <div id="paragraph" class="container">
+            <div class=" row">
+                <div class="col-12 p-0 col-md-9">
                     <p>Openness, accountability, and honesty define government transparency. In a free society,
                         transparency is
                         government's obligation to share information with citizens. It is at the heart of how citizens
@@ -101,8 +102,11 @@
                         Government is doing.
                     </p>
                 </div>
-                <img class="logo-text mb-5" src="style/congress.svg" alt="tgif logo">
+               <div class="col-12 p-0 col-md-3 pb-3 pb-md-0 pt-md-5 pl-md-3">
+                  <img class="  justify-content-center" src="style/congress.svg" alt="tgif logo">
+                </div>
             </div>
+            <div class="row">
             <p>We also believe that government should be participatory. Public engagement enhances the
                 Government's
                 effectiveness and improves the quality of its decisions. Knowledge is widely dispersed in
@@ -115,6 +119,7 @@
                 public
                 feedback to identify information of greatest use to the public.
             </p>
+        </div>
         </div>
     </div>
 

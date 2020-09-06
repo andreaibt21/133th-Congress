@@ -13,11 +13,12 @@
     <link rel="icon" href="style/tgif.svg">
 </head>
 
-<header class="d-flex justify-content-between align-items-center p-2">
-    <img class="logo" src="style/tgif.svg" alt="tgif logo">
-    <p>TGIF</p>
-    <a href="mailto:info@tgif.net?subject=info"> <i class="far fa-envelope"></i> info@tgif.net</a>
 
+<header class="d-flex justify-content-around justify-content-md-between align-items-center p-2">
+    <a href="https://www.whitehouse.gov/the_press_office/TransparencyandOpenGovernment" class="p-0"> <img class="logo "
+            src="style/tgif.svg" alt="tgif logo"></a>
+    <h1>TGIF</h1>
+    <a href="mailto:info@tgif.net?subject=info" class="p-0"> <i class="far fa-envelope"></i> <span class="d-none d-md-inline pr-md-2">  info@tgif.net</span></a>
 </header>
 
 <body>
@@ -50,7 +51,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                       Attendance
+                        Attendance
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <a class="dropdown-item" href="attendance-senate.html">Senate</a>
@@ -95,27 +96,28 @@
     </p>
 
     <form action="" onsubmit="return false" class="w-75 mx-auto d-flex align-items-end mb-4 justify-content-around">
-       
-       <div><legend>Filter by party</legend>
 
-        <label for="R" class="mr-1">Republican</label>
-        <input type="checkbox" name="party" value="R" id="R" checked>
-        <label for="D" class="mr-1 ml-2">Democrat</label>
-        <input type="checkbox" name="party" value="D" id="D" checked>
-        <label for="ID" class="mr-1 ml-2">Independent</label>
-        <input type="checkbox" name="party" value="ID"id="ID" checked>
-</div>
-        
+        <div>
+            <legend>Filter by party</legend>
+
+            <label for="R" class="mr-1">Republican</label>
+            <input type="checkbox" name="party" value="R" id="R" checked>
+            <label for="D" class="mr-1 ml-2">Democrat</label>
+            <input type="checkbox" name="party" value="D" id="D" checked>
+            <label for="ID" class="mr-1 ml-2">Independent</label>
+            <input type="checkbox" name="party" value="ID" id="ID" checked>
+        </div>
+
         <fieldset>
             <label for="state">State
                 <select name="state" id="select">
-                 <option value="All">All</option>
-                   
+                    <option value="All">All</option>
+
                 </select>
             </label>
         </fieldset>
     </form>
-    
+
 
 
 
@@ -136,7 +138,7 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
-    
+
     <script src="script/house-113.js"></script>
     <script src="script/main.js"></script>
 </body>

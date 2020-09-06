@@ -105,7 +105,34 @@ P {
     width: 85%;
 }
 
+#attendance td, #attendance th, #loyalty th, #loyalty td{
+    text-align: center;
+}
 
+td{
+    border-top: 1px var(--light-grey) solid;
+}
 
+#total{
+border-top: 1px var(--dark-grey) solid;
+}
+span{
+    font-size: 1.2rem;
+}
 
+ .long-table{
+    max-height: 311px;
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll!important;
+    margin: 0;
 
+}
+
+.long-table table{
+    width: 100%;
+}
+
+.container{
+   margin-bottom: 20px;
+}
