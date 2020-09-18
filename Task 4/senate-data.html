@@ -21,7 +21,7 @@
     <a href="mailto:info@tgif.net?subject=info" class="p-0"> <i class="far fa-envelope"></i> <span class="d-none d-md-inline pr-md-2">  info@tgif.net</span></a>
 </header>
 
-<body>
+<body id="senate">
 
     <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="index.html">Home</a>
@@ -80,7 +80,8 @@
         </div>
     </nav>
 
-    <div>
+    <div id="app">
+        
         <h2>Senators</h2>
         <p class="text-justify mx-auto w-75">First convened in 1789, the composition and powers of the Senate are
             established in Article One of the U.S.
@@ -99,17 +100,21 @@
                 <legend>Filter by party</legend>
 
                 <label for="R" class="mr-1">Republican</label>
-                <input type="checkbox" name="party" value="R" id="R" checked>
-                <label for="D" class="mr-1 ml-2">Democrat</label>
-                <input type="checkbox" name="party" value="D" id="D" checked>
-                <label for="ID" class="mr-1 ml-2">Independent</label>
-                <input type="checkbox" name="party" value="ID" id="ID" checked>
-            </div>
+                <input type="checkbox" name="party" value="R" id="R" v-model="checkedParties">
 
+                <label for="D" class="mr-1 ml-2">Democrat</label>
+                <input type="checkbox" name="party" value="D" id="D" v-model="checkedParties">
+                
+                <label for="ID" class="mr-1 ml-2">Independent</label>
+                <input type="checkbox" name="party" value="ID" id="ID" v-model="checkedParties">
+
+            </div>
+ 
             <fieldset>
                 <label for="state">State
-                    <select name="state" id="select">
+                    <select name="state" id="select" v-model="selectedState">
                         <option value="All">All</option>
+                        <option v-bind:value="state" v-for="state in states" >{{state}}</option>
 
                     </select>
                 </label>
@@ -117,7 +122,25 @@
 
         </form>
 
-        <table class="table w-75 mx-auto text-center" id="congress-data"></table>
+        <table class="table w-75 mx-auto text-center" id="congress-data">
+            <thead>
+                <th>Full name</th>
+                <th>party</th>
+                <th>State</th>
+                <th>Years in office</th>
+                <th> % votes with party</th>
+            </thead>
+            <tbody>
+                <tr v-for="member in filtered">
+                    <td><a v-bind:href="member.url"> {{member.first_name}} {{member.middle_name || ""}} {{member.last_name}}</a></td>
+                    <td>{{member.party}}</td>
+                    <td>{{member.state}}</td>
+                    <td>{{member.seniority}}</td>
+                    <td>{{member.missed_votes_pct}} %</td>
+                </tr>
+            </tbody>
+
+        </table>
 
     </div>
 
@@ -134,10 +157,10 @@
         crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
-        crossorigin="anonymous"></script>
+        crossorigin="anonymous">
+    </script>
 
-    <script src="script/senate-113.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script src="script/main.js"></script>
 </body>
 
