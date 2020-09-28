@@ -80,7 +80,8 @@
     </nav>
 
     <main id="attendance">
-        <div class="container">
+        <div id="app">
+            <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <h2 class="ml-3">Attendance</h2>
@@ -110,7 +111,26 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <tr>
+                                <td>Republicans</td>
+                                <td>{{stats.republicans.length}}</td>
+                                <td>{{getavg(stats.republicans, "missed_votes_pct")}} %</td>
+                            </tr>
+                            <tr>
+                                <td>Democrats</td>
+                                <td>{{stats.democrats.length}}</td>
+                                <td>{{getavg(stats.democrats, "missed_votes_pct")}} %</td>
+                            </tr> 
+                            <tr>
+                                <td>Independents</td>
+                                <td>{{stats.independents.length}}</td>
+                                <td>{{getavg(stats.independents, "missed_votes_pct")}} %</td>
+                            </tr>
+                            <tr>
+                                <td>Total</td>
+                                <td>{{members.length}}</td>
+                                <td>{{getavg(members, "missed_votes_pct")}} %</td>
+                            </tr>
                         </tbody>
                     </table>
 
@@ -119,8 +139,9 @@
             <div class="row">
                 <div class=" col-12 col-md-6 d-flex flex-column justify-content-start ">
                     <h2 class="ml-3">Least Engaged <span>(Bottom 10% Attendance)</span></h2>
+                    <div class="long-table">
 
-                    <table id="table-least" class="w-100">
+                    <!-- <table id="table-least" class="w-100">
                         <thead>
                             <tr>
                                 <th>Name</th>
@@ -129,13 +150,21 @@
                             </tr>
                         </thead>
 
-                    </table>
+                    </table> -->
+                    
+                    <template v-if="members.length > 0">
+                    <stats-table v-bind:members="members" prop2="missed_votes" prop1="missed_votes_pct" 
+                                least-or-most="least" type="Number of Missed Votes" ptc="% Missed">
+                    </stats-table>
+                    </template>
+                    
+                    </div>
                 </div>
 
                 <div class="col-12 col-md-6 d-flex flex-column justify-content-start ">
                     <h2 class="ml-3">Most Engaged <span>(Top 10% Attendance)</span></h2>
                     <div class="long-table">
-                        <table id="table-most">
+                        <!-- <table id="table-most">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -144,13 +173,20 @@
                                 </tr>
                             </thead>
 
-                        </table>
+                        </table> -->
+                    
+                    <template v-if="members.length > 0">
+                    <stats-table v-bind:members="members" prop2="missed_votes" prop1="missed_votes_pct" 
+                                 least-or-most="most" type="Number of Missed Votes" ptc="% Missed">
+                    </stats-table>
+                    </template>
+                    
                     </div>
                 </div>
             </div>
 
+            </div>
         </div>
-
     </main>
 
 
@@ -169,8 +205,8 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
-    <script src="script/senate-113.js"></script>
-    <script src="script/statistics.js"></script>
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script src="script/stats.js"></script>
 </body>
 
 </html>

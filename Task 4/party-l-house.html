@@ -13,7 +13,7 @@
     <link rel="icon" href="style/tgif.svg">
 </head>
 
-<body>
+<body id="house">
 
    
     <header class="d-flex justify-content-around justify-content-md-between align-items-center p-2">
@@ -82,7 +82,8 @@
     </nav>
 
     <main id="loyalty">
-        <div class="container">
+        <div id="app">
+            <div class="container">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <h2 class="ml-3">Party Loyalty</h2>
@@ -102,7 +103,28 @@
                                     <th>% Voted with Prty</th>
                                 </tr>
                             </thead>
-                            <tbody></tbody>
+                            <tbody>
+                                <tr>
+                                    <td>Republicans</td>
+                                    <td>{{stats.republicans.length}}</td>
+                                    <td>{{getavg(stats.republicans, "votes_with_party_pct")}} %</td>
+                                </tr>
+                                <tr>
+                                    <td>Democrats</td>
+                                    <td>{{stats.democrats.length}}</td>
+                                    <td>{{getavg(stats.democrats, "votes_with_party_pct")}} %</td>
+                                </tr> 
+                                <tr>
+                                    <td>Independents</td>
+                                    <td>{{stats.independents.length}}</td>
+                                    <td>{{getavg(stats.independents, "votes_with_party_pct")}} %</td>
+                                </tr>
+                                <tr>
+                                    <td>Total</td>
+                                    <td>{{members.length}}</td>
+                                    <td>{{getavg(members, "votes_with_party_pct")}} %</td>
+                                </tr>
+                            </tbody>
 
                         </table>
                     
@@ -113,7 +135,7 @@
                     <h2 class="ml-3">Least Loyal <span>
                             (Bottom 10% of Party)</h2>
                     <div class="long-table">
-                        <table id="table-least">
+                        <!-- <table id="table-least">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -121,15 +143,22 @@
                                     <th>% Party Votes</th>
                                 </tr>
                             </thead>
+                        </table> -->
+                       
+                        <template v-if="members.length > 0">
 
-                        </table>
+                            <stats-table v-bind:members="members" prop2="total_votes" prop1="votes_with_party_pct" 
+                                         least-or-most="least" type="Number Party Votes" ptc="% Party Votes"></stats-table>
+
+                        </template>
+                    
                     </div>
                 </div>
                 <div class="col-12 col-md-6 ">
                     <h2 class="ml-3">Most Loyal <span>
                             (Top 10% of Party)</span></h2>
                     <div class="long-table">
-                        <table id="table-most">
+                        <!-- <table id="table-most">
                             <thead>
                                 <tr>
                                     <th>Name</th>
@@ -138,9 +167,17 @@
                                 </tr>
                             </thead>
 
-                        </table>
+                        </table> -->
+                       
+                        <template v-if="members.length > 0">
+
+                            <stats-table v-bind:members="members" prop2="total_votes" prop1="votes_with_party_pct" 
+                                         least-or-most="most" type="Number Party Votes" ptc="% Party Votes"></stats-table>
+                                         
+                        </template>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
     </main>
@@ -161,8 +198,8 @@
         integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
         crossorigin="anonymous"></script>
 
-    <script src="script/house-113.js"></script>
-    <script src="script/statistics.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+        <script src="script/stats.js"></script>
 </body>
 
 </html>
